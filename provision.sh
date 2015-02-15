@@ -12,5 +12,8 @@ adduser vagrant docker
 echo "DOCKER_OPTS=\"--bip=172.17.42.1/16" >> /etc/default/docker
 service docker restart
 
+# All traffice that comes to the VM in the docker range can be natted to the docker bridge
+iptables -t nat -A POSTROUTING -d 172.18.42.0/24 -j ACCEPT
+
 
 
